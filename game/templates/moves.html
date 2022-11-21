@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="mt-2">
+        <div>
+            <a class="mr-1 btn btn-sm btn-outline-success" href="{% url 'continue_game' game_id=game.pk %}">Continue
+                this game</a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'home' last=10 %}">Quit</a>
+        </div>
+
+        <div class="mt-2 ">
+            <div> Showing moves for game №{{ game.pk }}:</div>
+            <div class="font-weight-bold"> {{ game }}</div>
+        </div>
+        <table class="mt-2 table table-sm table-striped text-center">
+
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">{{ game.player1_name }}</th>
+                <th scope="col">{{ game.player2_name }}</th>
+                <th scope="col">Winner</th>
+                <th scope="col">Time</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for move in moves %}
+
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ move.icon1|safe }}  </td>
+                    <td>{{ move.icon2|safe }} </td>
+                    <td class=" font-italic">{{ move.winner }}</td>
+                    <td>{{ move.created_at|date:"H:i d-m-Y" }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

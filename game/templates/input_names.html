@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <form method="post" class="mt-2">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label class="font-weight-bold">Player {% if not with_computer %}1{% endif %} name:</label>
+            <input type="text" class="form-control" maxlength="20" name="name1" placeholder="Enter your name here"
+                   required="True">
+        </div>
+
+        {% if not with_computer %}
+            <div class="form-group">
+                <label class="font-weight-bold">Player 2 name:</label>
+                <input type="text" class="form-control" maxlength="20" name="name2" placeholder="Enter your name here"
+                       required="True">
+            </div>
+        {% endif %}
+        <div class="text-center">
+            <button class="btn btn-success align-center" type="submit"> Play!</button>
+        </div>
+
+
+    </form>
+{% endblock %}

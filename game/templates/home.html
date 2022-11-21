@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="mt-2">
+        <a class="m-1 btn btn-warning" href="{% url 'create_game' option="friends" %}">New game with friend</a>
+        <a class="m-1 btn btn-primary" href="{% url 'create_game' option="computer" %}">New game with computer</a>
+
+
+        <table class="mt-2 table table-sm text-center table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">№</th>
+                <th scope="col">Game</th>
+                <th scope="col">Started</th>
+                <th scope="col">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for game in games %}
+
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ game.pk }}</td>
+                    <td class="font-italic">{{ game }}</td>
+                    <td>{{ game.created_at|date:"H:i d-m-Y" }}</td>
+                    <td>
+                        <div>
+                            <a class="mr-1 btn btn-sm btn-outline-success"
+                               href="{% url 'continue_game' game_id=game.pk %}">Continue game</a>
+                            <a class="btn btn-sm btn-outline-info" href="{% url 'see_moves' game_id=game.pk last=15 %}">See
+                                moves</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

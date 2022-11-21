@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="text-center mt-2">
+        <h5>You are not supposed to start a game without player names. Please return to the start page and try
+            again.</h5>
+        <a href="{% url 'home' %}">Go to start page</a>
+    </div>
+{% endblock %}
